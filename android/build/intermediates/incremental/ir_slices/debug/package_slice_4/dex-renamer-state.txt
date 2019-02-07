@@ -1,0 +1,4 @@
+#Thu Feb 07 13:35:26 CET 2019
+base.0=/home/pasinozavr/test/android/build/intermediates/transforms/dexMerger/debug/4
+path.0=classes.dex
+renamed.0=classes.dex

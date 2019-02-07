@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Thu Feb 07 13:32:59 CET 2019
+0.baseType=DIRECTORY
+0.base=/home/pasinozavr/test/android/build/intermediates/merged_assets/debug/mergeDebugAssets/out
+0.path=badlogic.jpg
+0.set=ASSET
+count=1
