@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Oracle 0.2.iml" filepath="$PROJECT_DIR$/Oracle 0.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InterfOracle.iml" filepath="$PROJECT_DIR$/InterfOracle.iml" />
       <module fileurl="file://$PROJECT_DIR$/android/android.iml" filepath="$PROJECT_DIR$/android/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
     </modules>
