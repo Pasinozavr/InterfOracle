@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="27" />
 
     <application
@@ -16,6 +16,9 @@
         android:isGame="true"
         android:label="@string/app_name"
         android:theme="@style/GdxTheme" >
+        <activity
+            android:name="com.mygdx.game.MenuActivity"
+            android:label="@string/title_activity_menu" />
         <activity
             android:name="com.mygdx.game.AndroidLauncher"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"

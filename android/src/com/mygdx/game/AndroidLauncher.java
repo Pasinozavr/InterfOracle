@@ -16,6 +16,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 	private PyramidHandler myPyramidHandler;
 	private ShakeListener myShakeListener;
+	private MenuActivity menu;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -24,6 +25,10 @@ public class AndroidLauncher extends AndroidApplication {
 
 		myPyramidHandler = new PyramidHandler();
 		initialize(myPyramidHandler, config);
+		menu = new MenuActivity();
+
+
+
 
 		myShakeListener = new ShakeListener(this);
 		myShakeListener.setOnShakeListener(new ShakeListener.OnShakeListener() {
