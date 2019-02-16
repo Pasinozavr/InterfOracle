@@ -96,7 +96,7 @@ public class PyramidHandler extends InputAdapter implements ApplicationListener 
 		Gdx.input.setInputProcessor(new InputMultiplexer(this));
 
 		assets = new AssetManager();
-		assets.load("1.g3db", Model.class);
+		assets.load("blue.g3db", Model.class);
 		loading = true;
 	}
 
@@ -104,7 +104,7 @@ public class PyramidHandler extends InputAdapter implements ApplicationListener 
 	public void render() {
 		if (loading)
 			if (assets.update()) {
-				model = assets.get("1.g3db", Model.class);
+				model = assets.get("blue.g3db", Model.class);
 				instance = new ModelInstance(model);
 				loading = false;
 			} else {
