@@ -1,107 +1,67 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\595ed892ef902ada28f3c8acfab274e5\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\a42cf70a2a272bf648779297a6e9ef7c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\ebf50bfa878d7f96d545b0f22353edd2\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\e7310c7659d1c2f795b3556fb1301563\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\4818397ac19db29a962b3f5b15addd4d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\7a4a3eeab741a584133258889956fab2\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\2dc72a2a57dca0f9847e07c887354605\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d95c1e21b7aa0eb4b6500d5808702b2d\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\9dfdb2470abecf59f91eec14e521b05f\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\531ebcf1dd4724c90fb5ddb6bdbf2144\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
 	package
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:3:5-29
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:3:5-46
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:1-28:12
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:1-24:12
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:2:11-69
-application
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:5:5-26:19
-	android:label
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:10:9-41
-	android:appCategory
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:7:9-35
-	android:icon
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:8:9-45
-	android:allowBackup
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:6:9-35
-	android:theme
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:11:9-40
-	android:isGame
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:9:9-30
-activity#com.mygdx.game.MenuActivity
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:12:9-14:68
-	android:label
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:14:13-56
-	android:name
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:13:13-41
-activity#com.mygdx.game.AndroidLauncher
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:15:9-25:20
-	android:screenOrientation
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:19:13-50
-	android:label
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:18:13-45
-	android:configChanges
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:17:13-107
-	android:name
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:16:13-44
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:20:13-24:29
-action#android.intent.action.MAIN
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:21:17-69
-	android:name
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:21:25-66
-category#android.intent.category.LAUNCHER
-ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:23:17-77
-	android:name
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:2:11-69
 uses-sdk
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\595ed892ef902ada28f3c8acfab274e5\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\595ed892ef902ada28f3c8acfab274e5\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\a42cf70a2a272bf648779297a6e9ef7c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\a42cf70a2a272bf648779297a6e9ef7c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\ebf50bfa878d7f96d545b0f22353edd2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\ebf50bfa878d7f96d545b0f22353edd2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\e7310c7659d1c2f795b3556fb1301563\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\e7310c7659d1c2f795b3556fb1301563\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\4818397ac19db29a962b3f5b15addd4d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\4818397ac19db29a962b3f5b15addd4d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\7a4a3eeab741a584133258889956fab2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\7a4a3eeab741a584133258889956fab2\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\2dc72a2a57dca0f9847e07c887354605\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\2dc72a2a57dca0f9847e07c887354605\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d95c1e21b7aa0eb4b6500d5808702b2d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d95c1e21b7aa0eb4b6500d5808702b2d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\9dfdb2470abecf59f91eec14e521b05f\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\9dfdb2470abecf59f91eec14e521b05f\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\531ebcf1dd4724c90fb5ddb6bdbf2144\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Pasinozavr\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\531ebcf1dd4724c90fb5ddb6bdbf2144\AndroidManifest.xml:20:5-44
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
 	android:targetSdkVersion
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
-		INJECTED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:5:5-16
+		INJECTED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml
+application
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:7:5-22:19
+	android:label
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:10:9-41
+	android:icon
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:9:9-45
+	android:allowBackup
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:11:9-40
+activity#com.crowni.gdx.navigationdrawer.AndroidLauncher
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:12:9-21:20
+	android:screenOrientation
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:15:13-50
+	android:label
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:14:13-45
+	android:configChanges
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:16:13-83
+	android:name
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:13:13-75
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:17:13-20:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from C:\Users\Pasinozavr\Desktop\libGDX-NavigationDrawer-master\android\AndroidManifest.xml:19:27-74
