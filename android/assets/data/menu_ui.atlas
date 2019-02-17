@@ -30,6 +30,13 @@ icon_off_music
   orig: 96, 96
   offset: 0, 0
   index: -1
+quest
+   rotate: false
+   xy: 396, 23
+   size: 96, 96
+   orig: 96, 96
+   offset: 0, 0
+   index: -1
 icon_rate
   rotate: false
   xy: 203, 1
