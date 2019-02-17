@@ -52,7 +52,8 @@ public class PyramidSceneHandler implements Screen {
 
     private long startTime;
     private float width = 200f, height = width / 2f, depth = width, bound = 45f;
-    private final float[] startPos = {250f, 50f, 0f}, Vpos = new float[3], pos = {startPos[0], startPos[1], startPos[2]};
+
+
 
     private Model model;
     private ModelInstance instance;
@@ -84,11 +85,15 @@ public class PyramidSceneHandler implements Screen {
 
     private String question = "";
 
-    private SpriteBatch spriteBatch = new SpriteBatch();
-    private int posX = Gdx.graphics.getWidth() - 20;
-    private int posY = Gdx.graphics.getHeight() - 20;
+    private SpriteBatch spriteBatch1 = new SpriteBatch(), spriteBatch2 = new SpriteBatch(), spriteBatch3 = new SpriteBatch();
+    private int posX1 = Gdx.graphics.getWidth() - 20, posY1 = Gdx.graphics.getHeight() - 20;
+    private int posX2 = Gdx.graphics.getWidth() - 70, posY2 = Gdx.graphics.getHeight() - 20;
+    private int posX3 = Gdx.graphics.getWidth() - 120, posY3 = Gdx.graphics.getHeight() - 20;
     private float angle = -90;
-    private Matrix4 oldTransformMatrix, mx4Font = new Matrix4();
+    private Matrix4 oldTransformMatrix1, oldTransformMatrix2, oldTransformMatrix3, mx4Font1 = new Matrix4(), mx4Font2 = new Matrix4(), mx4Font3 = new Matrix4();
+
+    private float newX = 250f, newY = 50f, newZ = 0, toX = 0f, toY = 0f, toZ  = 0f;
+    private final float[] plutot_non = {250f, 25f, -40f, -30f, 40f, 20f}, non = {-150f, 200f, 0f, 0f, 100f, 0f}, again = {-150f, -90f, 0f, 50f, 50f, 0f}, plutot_oui = {75f, 75f, 220f, -150f, 60f, -350f}, oui = {50f, 150f, -200f, 0f, 0f, 0f};
 
     @Override
     public void show() {
@@ -97,9 +102,16 @@ public class PyramidSceneHandler implements Screen {
         btmFond.getData().setScale(width/NAV_WIDTH);
 
 
-        oldTransformMatrix = spriteBatch.getTransformMatrix().cpy();
-        mx4Font.rotate(new Vector3(0, 0, 1), angle);
-        mx4Font.trn(posX, posY, 0);
+        oldTransformMatrix1 = spriteBatch1.getTransformMatrix().cpy();
+        mx4Font1.rotate(new Vector3(0, 0, 1), angle);
+        mx4Font1.trn(posX1, posY1, 0);
+        oldTransformMatrix2 = spriteBatch2.getTransformMatrix().cpy();
+        mx4Font2.rotate(new Vector3(0, 0, 1), angle);
+        mx4Font2.trn(posX2, posY2, 0);
+        oldTransformMatrix3 = spriteBatch3.getTransformMatrix().cpy();
+        mx4Font3.rotate(new Vector3(0, 0, 1), angle);
+        mx4Font3.trn(posX3, posY3, 0);
+
         question = "There's no question yet";
 
 
@@ -172,8 +184,56 @@ public class PyramidSceneHandler implements Screen {
 
                 if (actor.getName().equals("RATE")) {
                     Gdx.app.debug(TAG, "Rate button clicked.");
+                    int rnd_sol = rnd.nextInt(5);
+                    if(rnd_sol == 1)
+                    {
+                        newX = plutot_non[0];
+                        newY = plutot_non[1];
+                        newZ = plutot_non[2];
+                        toX = plutot_non[3];
+                        toY = plutot_non[4];
+                        toZ = plutot_non[5];
+                    }
+                    else if(rnd_sol == 2)
+                    {
+                        newX = plutot_oui[0];
+                        newY = plutot_oui[1];
+                        newZ = plutot_oui[2];
+                        toX = plutot_oui[3];
+                        toY = plutot_oui[4];
+                        toZ = plutot_oui[5];
+                    }
+                    else if(rnd_sol == 3)
+                    {
+                        newX = non[0];
+                        newY = non[1];
+                        newZ = non[2];
+                        toX = non[3];
+                        toY = non[4];
+                        toZ = non[5];
+                    }
+                    else if(rnd_sol == 4)
+                    {
+                        newX = oui[0];
+                        newY = oui[1];
+                        newZ = oui[2];
+                        toX = oui[3];
+                        toY = oui[4];
+                        toZ = oui[5];
+                    }
+                    else
+                    {
+                        newX = again[0];
+                        newY = again[1];
+                        newZ = again[2];
+                        toX = again[3];
+                        toY = again[4];
+                        toZ = again[5];
+                    }
+
 
                 } else if (actor.getName().equals("SHARE")) {
+
                     Image screenShot = new Image(ScreenUtils.getFrameBufferTexture());
 
                     try {
@@ -207,7 +267,6 @@ public class PyramidSceneHandler implements Screen {
                     };
 
                     Gdx.input.getTextInput(textListener, "Your question is : ", "Will I pass this semester?", "Something that can be answered \"yes\" or \"no\" ");
-
                 }
                 else if (actor.getName().contains("LOGO"))
                 {
@@ -244,15 +303,12 @@ public class PyramidSceneHandler implements Screen {
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, 10f, 10f, 20f));
 
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(startPos[0], startPos[1], startPos[2]);
-        cam.lookAt(0, 0, 0);
+        cam.position.set(newX, newY, newZ);
+        cam.lookAt(toX, toY, toZ);
         cam.near = 1f;
         cam.far = 300f;
         cam.update();
 
-        for (int i = 0; i < 3; i++){
-            Vpos[i] = getSpeed();
-        }
 
         label = new Label(" ", new Label.LabelStyle(btmFond, Color.WHITE));
         showFPS = true;
@@ -296,26 +352,27 @@ public class PyramidSceneHandler implements Screen {
         }
 
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        spriteBatch.setTransformMatrix(mx4Font);
-        spriteBatch.begin();
-        btmFond.draw(spriteBatch, question, 0, 0);
-        spriteBatch.end();
-        spriteBatch.setTransformMatrix(oldTransformMatrix);
+        spriteBatch1.setTransformMatrix(mx4Font1);
+        spriteBatch1.begin();
+        btmFond.draw(spriteBatch1, question, 0, 0);
+        spriteBatch1.end();
+        spriteBatch1.setTransformMatrix(oldTransformMatrix1);
 
-/*
-        for (int i = 0; i < 3; i++) {
-            pos[i] += Vpos[i];
-            if (pos[i] <= startPos[i] - bound) {
-                pos[i] = startPos[i] - bound;
-                Vpos[i] = getSpeed();
-            }
-            if (pos[i] >= startPos[i] + bound) {
-                pos[i] = startPos[i] + bound;
-                Vpos[i] = getSpeed();
-            }
-        }
-        */
-        cam.position.set(pos[0], pos[1], pos[2]);
+        spriteBatch2.setTransformMatrix(mx4Font2);
+        spriteBatch2.begin();
+        btmFond.draw(spriteBatch2, "Place at "+newX+" "+newY+" "+newZ, 0, 0);
+        spriteBatch2.end();
+        spriteBatch2.setTransformMatrix(oldTransformMatrix2);
+
+        spriteBatch3.setTransformMatrix(mx4Font3);
+        spriteBatch3.begin();
+        btmFond.draw(spriteBatch3, "Look at "+toX+" "+toY+" "+toZ, 0, 0);
+        spriteBatch3.end();
+        spriteBatch3.setTransformMatrix(oldTransformMatrix3);
+
+
+        cam.lookAt(toX, toY, toZ);
+        cam.position.set(newX, newY, newZ);
         cam.update();
 
         modelBatch.begin(cam);
@@ -394,16 +451,6 @@ public class PyramidSceneHandler implements Screen {
         return speed * Math.signum((float) Math.random() - 0.5f) * Math.max((float) Math.random(), 0.5f);
     }
 
-    public void shake()
-    {
-        for (int i = 0; i < 3; i++) {
-            pos[i] += Vpos[i];
-            pos[i] = startPos[i] + (-1) * rnd.nextInt(200) + rnd.nextInt(200);
-            Vpos[i] = getSpeed();
-        }
 
-        cam.position.set(pos[0], pos[1], pos[2]);
-        cam.update();
-    }
 
 }
