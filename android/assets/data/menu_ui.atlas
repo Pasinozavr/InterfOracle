@@ -18,7 +18,7 @@ logo_crowni
   index: -1
 icon_music
   rotate: false
-  xy: 298, 121
+  xy: 305, 121
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
@@ -39,7 +39,7 @@ icon_rate
   index: -1
 icon_share
   rotate: false
-  xy: 301, 23
+  xy: 306, 23
   size: 96, 96
   orig: 96, 96
   offset: 0, 0

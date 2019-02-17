@@ -1,42 +1,39 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Pasinozavr\\Desktop\\libGDX-NavigationDrawer-master\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\Study\\course_5\\semester_2\\Le Mans\\Prg Interface\\OraclProject\\InterfOracle\\android\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pasinozavr\\Desktop\\libGDX-NavigationDrawer-master\\android\\res\\values\\strings.xml",
+                    "source": "D:\\Study\\course_5\\semester_2\\Le Mans\\Prg Interface\\OraclProject\\InterfOracle\\android\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "4",
                         "startOffsets": "56",
-                        "endColumns": "60",
-                        "endOffsets": "112"
+                        "endColumns": "50",
+                        "endOffsets": "102"
                     },
                     "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "60",
-                        "endOffsets": "111"
+                        "endColumns": "50",
+                        "endOffsets": "101"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pasinozavr\\Desktop\\libGDX-NavigationDrawer-master\\android\\res\\values\\styles.xml",
+                    "source": "D:\\Study\\course_5\\semester_2\\Le Mans\\Prg Interface\\OraclProject\\InterfOracle\\android\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endLines": "9",
-                        "endColumns": "12",
-                        "endOffsets": "475"
+                        "startLines": "-1",
+                        "startColumns": "-1",
+                        "startOffsets": "-1"
                     },
                     "to": {
                         "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "116",
+                        "startOffsets": "106",
                         "endLines": "10",
                         "endColumns": "12",
-                        "endOffsets": "574"
+                        "endOffsets": "564"
                     }
                 }
             ]

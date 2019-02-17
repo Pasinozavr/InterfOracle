@@ -19,14 +19,15 @@ public class AndroidLauncher extends AndroidApplication {
 		tempLauncher = new TempLauncher();
 		initialize(tempLauncher, config);
 
-
+/*
 		myShakeListener = new ShakeListener(this);
 		myShakeListener.setOnShakeListener(new ShakeListener.OnShakeListener() {
 			@Override
 			public void onShake() {
 				Toast.makeText(AndroidLauncher.this, "Shaking ", Toast.LENGTH_LONG).show();
-				//tstScr.shake();
+
 			}
 		});
+*/
 	}
 }
