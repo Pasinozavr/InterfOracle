@@ -31,6 +31,7 @@ import com.crowni.gdx.navigationdrawer.utils.*;
 import com.crowni.gdx.navigationdrawer.NavigationDrawer;
 import com.badlogic.gdx.math.Interpolation;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class PyramidSceneHandler implements Screen {
     private AssetManager assets ;
 
     private long startTime;
-    private float width = 200f, height = width / 2f, depth = width, bound = 45f, angle = -90, newX, newY, newZ, toX, toY, toZ, oldX = 250f, oldY = 50f, oldZ = 0, oldToX = 0, oldToY = 0, oldToZ = 0, graphSize, steps = 10, step = 0, temp1, temp2, temp3, temp4, temp5, temp6;
+    private float width = 200f, height = width / 2f, depth = width, bound = 45f, angle = -90, newX, newY, newZ, toX, toY, toZ, oldX = 250f, oldY = 50f, oldZ = 0, oldToX = 0, oldToY = 0, oldToZ = 0, steps = 13456, step = 0, smooth = 0.6f;
 
     private Interpolation interpolation;
 
@@ -198,12 +199,7 @@ public class PyramidSceneHandler implements Screen {
                     }
                     moving = true;
                     step = 1;
-                    temp1 = (newX - oldX) / steps;
-                    temp2 = (newY - oldY) / steps;
-                    temp3 = (newZ - oldZ) / steps;
-                    temp4 = (toZ - oldToX) / steps;
-                    temp5 = (toY - oldToY) / steps;
-                    temp6 = (toZ - oldToZ) / steps;
+
 
 
                 } else if (actor.getName().equals("SHARE")) {
@@ -275,7 +271,7 @@ public class PyramidSceneHandler implements Screen {
             StringBuilder builder = new StringBuilder();
             builder.append(" FPS: ").append(Gdx.graphics.getFramesPerSecond());
             long time = System.currentTimeMillis() - startTime;
-            builder.append("| Game time: ").append(time);
+            builder.append(" | Game time: ").append(time);
             label.setText(builder);
 
             stage.addActor(label);
@@ -330,12 +326,14 @@ public class PyramidSceneHandler implements Screen {
         stage.draw();
     }
 
+    public void chooseColor()
+    {
+        
+    }
     @Override
     public void show() {
         stage = new Stage(new ExtendViewport(600, 800));
         interpolation = new Interpolation.Elastic(5,5,2,0.7f);
-        graphSize = 0.75f * Math.min(600, 800);
-        //steps = graphSize * 0.5f;
 
         setMatrixForTextRotation();
 
@@ -365,6 +363,10 @@ public class PyramidSceneHandler implements Screen {
         startTime = System.currentTimeMillis();
 
         assets.load("blue.g3db", Model.class);
+       /* assets.load("red.g3db", Model.class);
+        assets.load("green.g3db", Model.class);
+        assets.load("white.g3db", Model.class);*/
+
         loading = true;
 
         toastFactory = new Toast.ToastFactory.Builder()
@@ -387,42 +389,31 @@ public class PyramidSceneHandler implements Screen {
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.gl.glClearColor(24 / 255F, 168 / 255F, 173 / 255F, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        visionUpdate(delta);
 
-            do
+            if(moving)
             {
-                //float percent = step / steps;
-                oldX = oldX + temp1;
-                oldY = oldY + temp2;
-                oldZ = oldZ + temp3;
+                oldX = Interpolation.bounceIn.apply(oldX, newX, smooth);
+                oldY = Interpolation.bounceIn.apply(oldY, newY, smooth);
+                oldZ = Interpolation.bounceIn.apply(oldZ, newZ, smooth);
+                oldToX = Interpolation.bounceIn.apply(oldToX, oldX, smooth);
+                oldToX = Interpolation.bounceIn.apply(oldToY, oldY, smooth);
+                oldToX = Interpolation.bounceIn.apply(oldToZ, oldZ, smooth);
 
-                oldToX = oldToX + temp4;
-                oldToY = oldToY + temp5;
-                oldToZ = oldToZ + temp6;
-
-
-                step++;
-
-                if(step >= steps)
+                if(step++ >= steps)
                 {
                     moving = false;
                     step = 0;
                 }
-
-                visionUpdate(delta);
-
-            }while(moving);
-
-
+            }
+        //visionUpdate(delta);
         showNotification();
     }
 
 
     @Override
     public void resize(int width, int height) {
-        graphSize = 0.75f * Math.min(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
-        //steps = graphSize * 0.5f;
         stage.getViewport().update(width, height, true);
-
     }
 
     @Override
