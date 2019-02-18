@@ -1,5 +1,6 @@
 package com.crowni.gdx.navigationdrawer.Functionaly;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -7,25 +8,31 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Environment;
+import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.crowni.gdx.navigationdrawer.utils.*;
 import com.crowni.gdx.navigationdrawer.NavigationDrawer;
@@ -37,7 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class PyramidSceneHandler implements Screen {
+public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
 
     private TextureAtlas atlas = new TextureAtlas("data/menu_ui.atlas");
     private final Image logo_crowni = new Image(atlas.findRegion("logo_crowni")), icon_rate = new Image(atlas.findRegion("icon_rate")), icon_share = new Image(atlas.findRegion("icon_share")), icon_music = new Image(atlas.findRegion("icon_music")), icon_off_music = new Image(atlas.findRegion("icon_off_music")), image_background = new Image(Utils.getTintedDrawable(atlas.findRegion("image_background"), Color.BLACK)), button_menu = new Image(atlas.findRegion("button_menu")), icon_question = new Image(atlas.findRegion("quest"));
@@ -72,6 +79,10 @@ public class PyramidSceneHandler implements Screen {
     private SpriteBatch spriteBatch1 = new SpriteBatch(), spriteBatch2 = new SpriteBatch(), spriteBatch3 = new SpriteBatch();
     private int posX1 = Gdx.graphics.getWidth() - 20, posY1 = Gdx.graphics.getHeight() - 20, posX2 = Gdx.graphics.getWidth() - 70, posY2 = Gdx.graphics.getHeight() - 20, posX3 = Gdx.graphics.getWidth() - 120, posY3 = Gdx.graphics.getHeight() - 20;
     private Matrix4 oldTransformMatrix1, oldTransformMatrix2, oldTransformMatrix3, mx4Font1 = new Matrix4(), mx4Font2 = new Matrix4(), mx4Font3 = new Matrix4();
+
+    private Dialog colorDialog;
+    private Skin uiSkin;
+    private long clr;
 
 
     public void setMatrixForTextRotation()
@@ -318,9 +329,11 @@ public class PyramidSceneHandler implements Screen {
         cam.position.set(oldX, oldY, oldZ);
         cam.update();
 
-        modelBatch.begin(cam);
-        modelBatch.render(instance, environment);
-        modelBatch.end();
+        if(!loading) {
+            modelBatch.begin(cam);
+            modelBatch.render(instance, environment);
+            modelBatch.end();
+        }
 
         stage.act(delta);
         stage.draw();
@@ -328,10 +341,11 @@ public class PyramidSceneHandler implements Screen {
 
     public void chooseColor()
     {
-        
+
     }
     @Override
     public void show() {
+        uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage(new ExtendViewport(600, 800));
         interpolation = new Interpolation.Elastic(5,5,2,0.7f);
 
@@ -362,8 +376,8 @@ public class PyramidSceneHandler implements Screen {
 
         startTime = System.currentTimeMillis();
 
-        assets.load("blue.g3db", Model.class);
-       /* assets.load("red.g3db", Model.class);
+       /* assets.load("blue.g3db", Model.class);
+        assets.load("red.g3db", Model.class);
         assets.load("green.g3db", Model.class);
         assets.load("white.g3db", Model.class);*/
 
@@ -372,15 +386,72 @@ public class PyramidSceneHandler implements Screen {
         toastFactory = new Toast.ToastFactory.Builder()
                 .font(btmFond)
                 .build();
+
+        //assets.load("red.g3db", Model.class);
+
+        colorDialog = new Dialog("Choose Color", uiSkin)
+        {
+            protected void result(Object object)
+            {
+                if (object.equals(1L))
+                {
+                    assets.load("red.g3db", Model.class);
+                    clr = 1L;
+                } else  if (object.equals(2L))
+                {
+                    assets.load("blue.g3db", Model.class);
+                    clr = 2L;
+                } else  if (object.equals(3L))
+                {
+                    assets.load("green.g3db", Model.class);
+                    clr = 3L;
+                } else
+                {
+                    assets.load("white.g3db", Model.class);
+                    clr = 4L;
+                }
+            }
+        };
+
+        colorDialog.button("Red", 1L);
+        colorDialog.button("Blue", 2L);
+        colorDialog.button("Green", 3L);
+        colorDialog.button("White", 4L);
+
+        colorDialog.show(stage);
+
     }
 
 
     public void render(float delta) {
         if (loading)
             if (assets.update()) {
-                model = assets.get("blue.g3db", Model.class);
-                instance = new ModelInstance(model);
-                loading = false;
+                if(clr == 1L) {
+                    model = assets.get("red.g3db", Model.class);
+                    instance = new ModelInstance(model);
+                    loading = false;
+                } else  if(clr == 2L) {
+                    model = assets.get("blue.g3db", Model.class);
+                    instance = new ModelInstance(model);
+                    loading = false;
+                }
+                    else if(clr == 3L) {
+                    model = assets.get("green.g3db", Model.class);
+                    instance = new ModelInstance(model);
+                    loading = false;
+
+                } else if (clr == 4L){
+                    model = assets.get("white.g3db", Model.class);
+                    instance = new ModelInstance(model);
+                    loading = false;
+                }
+                else {
+                    model = new ModelBuilder().createBox(300f, 300f, 300f, new Material(ColorAttribute.createDiffuse(Color.LIGHT_GRAY)),VertexAttributes.Usage.Position );
+                    /*model = new ModelBuilder().createCone(20f, 120f, 20f, 3,
+                            new Material(ColorAttribute.createDiffuse(Color.GREEN)),
+                            VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);*/
+                    instance = new ModelInstance(model);
+                }
             } else {
                 return;
             }
