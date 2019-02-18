@@ -23,9 +23,12 @@
                 {
                     "source": "D:\\Study\\course_5\\semester_2\\Le Mans\\Prg Interface\\OraclProject\\InterfOracle\\android\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "-1",
-                        "startColumns": "-1",
-                        "startOffsets": "-1"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "475"
                     },
                     "to": {
                         "startLines": "3",

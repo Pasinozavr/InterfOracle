@@ -4,12 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -29,13 +26,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-
-
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.crowni.gdx.navigationdrawer.utils.*;
 import com.crowni.gdx.navigationdrawer.NavigationDrawer;
-
+import com.badlogic.gdx.math.Interpolation;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -43,64 +37,46 @@ import java.util.List;
 import java.util.Random;
 
 public class PyramidSceneHandler implements Screen {
-    private Stage stage;
-    private static final float NAV_WIDTH = 200F, NAV_HEIGHT = 1920F, speed = 2F;
 
-    private AssetManager assets ;
+    private TextureAtlas atlas = new TextureAtlas("data/menu_ui.atlas");
+    private final Image logo_crowni = new Image(atlas.findRegion("logo_crowni")), icon_rate = new Image(atlas.findRegion("icon_rate")), icon_share = new Image(atlas.findRegion("icon_share")), icon_music = new Image(atlas.findRegion("icon_music")), icon_off_music = new Image(atlas.findRegion("icon_off_music")), image_background = new Image(Utils.getTintedDrawable(atlas.findRegion("image_background"), Color.BLACK)), button_menu = new Image(atlas.findRegion("button_menu")), icon_question = new Image(atlas.findRegion("quest"));
+    private final float[] plutot_non = {250f, 25f, -40f, -30f, 40f, 20f}, non = {-150f, 200f, 0f, 0f, 100f, 0f}, again = {-150f, -90f, 0f, 50f, 50f, 0f}, plutot_oui = {75f, 75f, 220f, -150f, 60f, -350f}, oui = {50f, 150f, -200f, 0f, 0f, 0f};
+    private static final float NAV_WIDTH = 200F, NAV_HEIGHT = 1920F, speed = 2F;
+    private final List<Toast> toasts = new LinkedList<Toast>();
+    private static final String TAG = PyramidSceneHandler.class.getSimpleName();
+    private final NavigationDrawer drawer = new NavigationDrawer(NAV_WIDTH, NAV_HEIGHT);
+
     private Label label = new Label(" ", new Label.LabelStyle(new BitmapFont(), Color.WHITE)), questionLabel = new Label(" ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
     private PerspectiveCamera cam;
+    private Stage stage;
+    private AssetManager assets ;
 
     private long startTime;
-    private float width = 200f, height = width / 2f, depth = width, bound = 45f;
+    private float width = 200f, height = width / 2f, depth = width, bound = 45f, angle = -90, newX, newY, newZ, toX, toY, toZ, oldX = 250f, oldY = 50f, oldZ = 0, oldToX = 0, oldToY = 0, oldToZ = 0, graphSize, steps = 10, step = 0, temp1, temp2, temp3, temp4, temp5, temp6;
 
-
+    private Interpolation interpolation;
 
     private Model model;
     private ModelInstance instance;
     private ModelBatch modelBatch ;
     private Environment environment ;
-    private static int counter = 1;
 
-    private boolean loading, showFPS;
-
+    private boolean loading, showFPS, moving = false;
     private Random rnd ;
 
-    private TextureAtlas atlas = new TextureAtlas("data/menu_ui.atlas");
-    private static final String TAG = PyramidSceneHandler.class.getSimpleName();
-    private final Image logo_crowni = new Image(atlas.findRegion("logo_crowni"));
-    private final Image icon_rate = new Image(atlas.findRegion("icon_rate"));
-    private final Image icon_share = new Image(atlas.findRegion("icon_share"));
-    private final Image icon_music = new Image(atlas.findRegion("icon_music"));
-    private final Image icon_off_music = new Image(atlas.findRegion("icon_off_music"));
-    private final Image icon_question = new Image(atlas.findRegion("quest"));
-    private final Image image_background = new Image(Utils.getTintedDrawable(atlas.findRegion("image_background"), Color.BLACK));
-    private final Image button_menu = new Image(atlas.findRegion("button_menu"));
-
-    private final NavigationDrawer drawer = new NavigationDrawer(NAV_WIDTH, NAV_HEIGHT);
-
-    private final List<Toast> toasts = new LinkedList<Toast>();
     private Toast.ToastFactory toastFactory;
     private BitmapFont btmFond;
-    private ScreenshotSaver scrSvr;
-
     private String question = "";
 
     private SpriteBatch spriteBatch1 = new SpriteBatch(), spriteBatch2 = new SpriteBatch(), spriteBatch3 = new SpriteBatch();
-    private int posX1 = Gdx.graphics.getWidth() - 20, posY1 = Gdx.graphics.getHeight() - 20;
-    private int posX2 = Gdx.graphics.getWidth() - 70, posY2 = Gdx.graphics.getHeight() - 20;
-    private int posX3 = Gdx.graphics.getWidth() - 120, posY3 = Gdx.graphics.getHeight() - 20;
-    private float angle = -90;
+    private int posX1 = Gdx.graphics.getWidth() - 20, posY1 = Gdx.graphics.getHeight() - 20, posX2 = Gdx.graphics.getWidth() - 70, posY2 = Gdx.graphics.getHeight() - 20, posX3 = Gdx.graphics.getWidth() - 120, posY3 = Gdx.graphics.getHeight() - 20;
     private Matrix4 oldTransformMatrix1, oldTransformMatrix2, oldTransformMatrix3, mx4Font1 = new Matrix4(), mx4Font2 = new Matrix4(), mx4Font3 = new Matrix4();
 
-    private float newX = 250f, newY = 50f, newZ = 0, toX = 0f, toY = 0f, toZ  = 0f;
-    private final float[] plutot_non = {250f, 25f, -40f, -30f, 40f, 20f}, non = {-150f, 200f, 0f, 0f, 100f, 0f}, again = {-150f, -90f, 0f, 50f, 50f, 0f}, plutot_oui = {75f, 75f, 220f, -150f, 60f, -350f}, oui = {50f, 150f, -200f, 0f, 0f, 0f};
 
-    @Override
-    public void show() {
-
+    public void setMatrixForTextRotation()
+    {
         btmFond = new BitmapFont(Gdx.files.internal("1.fnt"));
         btmFond.getData().setScale(width/NAV_WIDTH);
-
 
         oldTransformMatrix1 = spriteBatch1.getTransformMatrix().cpy();
         mx4Font1.rotate(new Vector3(0, 0, 1), angle);
@@ -113,11 +89,10 @@ public class PyramidSceneHandler implements Screen {
         mx4Font3.trn(posX3, posY3, 0);
 
         question = "There's no question yet";
+    }
 
-
-        stage = new Stage(new ExtendViewport(600, 800));
-        Gdx.input.setInputProcessor(stage);
-
+    public void setMenu()
+    {
         drawer.add(logo_crowni).size(63, 85).pad(0, 52, 5, 52).expandX().row();
         drawer.add().height(950F).row();
         drawer.add(icon_question).pad(35, 52, 35, 42).expandX().row();
@@ -125,38 +100,30 @@ public class PyramidSceneHandler implements Screen {
         drawer.add(icon_share).pad(35, 52, 35, 42).expandX().row();
 
 
-
         icon_off_music.setVisible(false);
         drawer.stack(icon_music, icon_off_music).pad(32, 52, 185, 52).expandX().row();
 
 
-        // setup attributes for menu navigation drawer.
         drawer.setBackground(image_background.getDrawable());
         drawer.bottom().left();
         drawer.setWidthStartDrag(40f);
         drawer.setWidthBackDrag(0F);
         drawer.setTouchable(Touchable.enabled);
 
-        /* z-index = 1 */
-        // add image_background as a separating actor into stage to make smooth shadow with dragging value.
+
         image_background.setFillParent(true);
         stage.addActor(image_background);
 
 
-        /* z-index = 2 */
         drawer.setFadeBackground(image_background, 0.5f);
         stage.addActor(drawer);
 
-        /* z-index = 3 */
-        // add button_menu as a separating actor into stage to rotates with dragging value.
+
         button_menu.setOrigin(Align.center);
         stage.addActor(button_menu);
         drawer.setRotateMenuButton(button_menu, 90f);
 
 
-
-
-        /** Optional **/
         final Image image_shadow = new Image(atlas.findRegion("image_shadow"));
         image_shadow.setHeight(NAV_HEIGHT);
         image_shadow.setX(NAV_WIDTH);
@@ -164,10 +131,9 @@ public class PyramidSceneHandler implements Screen {
         drawer.addActor(image_shadow);
 
         stage.addActor(image_shadow);
-        // show the panel
+
         drawer.showManually(true);
 
-        /************ add item listener ***********/
         logo_crowni.setName("LOGO");
         icon_question.setName("QUESTION");
         icon_rate.setName("RATE");
@@ -230,11 +196,19 @@ public class PyramidSceneHandler implements Screen {
                         toY = again[4];
                         toZ = again[5];
                     }
+                    moving = true;
+                    step = 1;
+                    temp1 = (newX - oldX) / steps;
+                    temp2 = (newY - oldY) / steps;
+                    temp3 = (newZ - oldZ) / steps;
+                    temp4 = (toZ - oldToX) / steps;
+                    temp5 = (toY - oldToY) / steps;
+                    temp6 = (toZ - oldToZ) / steps;
 
 
                 } else if (actor.getName().equals("SHARE")) {
 
-                    Image screenShot = new Image(ScreenUtils.getFrameBufferTexture());
+                    //Image screenShot = new Image(ScreenUtils.getFrameBufferTexture());
 
                     try {
                         ScreenshotSaver.saveScreenshot("wow.png");
@@ -292,7 +266,82 @@ public class PyramidSceneHandler implements Screen {
             }
         };
 
-       Utils.addListeners(listener, logo_crowni, icon_question, icon_rate, icon_share, icon_music, icon_off_music, button_menu, image_background);
+        Utils.addListeners(listener, logo_crowni, icon_question, icon_rate, icon_share, icon_music, icon_off_music, button_menu, image_background);
+    }
+
+    public void showText()
+    {
+        if (showFPS) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(" FPS: ").append(Gdx.graphics.getFramesPerSecond());
+            long time = System.currentTimeMillis() - startTime;
+            builder.append("| Game time: ").append(time);
+            label.setText(builder);
+
+            stage.addActor(label);
+        }
+
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        spriteBatch1.setTransformMatrix(mx4Font1);
+        spriteBatch1.begin();
+        btmFond.draw(spriteBatch1, question, 0, 0);
+        spriteBatch1.end();
+        spriteBatch1.setTransformMatrix(oldTransformMatrix1);
+
+        spriteBatch2.setTransformMatrix(mx4Font2);
+        spriteBatch2.begin();
+        btmFond.draw(spriteBatch2, "Place at "+oldX+" "+oldY+" "+oldZ, 0, 0);
+        spriteBatch2.end();
+        spriteBatch2.setTransformMatrix(oldTransformMatrix2);
+
+        spriteBatch3.setTransformMatrix(mx4Font3);
+        spriteBatch3.begin();
+        btmFond.draw(spriteBatch3, "Look at "+oldToX+" "+oldToY+" "+oldToZ, 0, 0);
+        spriteBatch3.end();
+        spriteBatch3.setTransformMatrix(oldTransformMatrix3);
+    }
+
+    public void showNotification()
+    {
+        Iterator<Toast> it = toasts.iterator();
+        while(it.hasNext()) {
+            Toast t = it.next();
+            if (!t.render(Gdx.graphics.getDeltaTime())) {
+                it.remove();
+            } else {
+                break;
+            }
+        }
+    }
+
+    public void visionUpdate(float delta)
+    {
+        showText();
+
+        cam.lookAt(oldToX, oldToY, oldToZ);
+        cam.position.set(oldX, oldY, oldZ);
+        cam.update();
+
+        modelBatch.begin(cam);
+        modelBatch.render(instance, environment);
+        modelBatch.end();
+
+        stage.act(delta);
+        stage.draw();
+    }
+
+    @Override
+    public void show() {
+        stage = new Stage(new ExtendViewport(600, 800));
+        interpolation = new Interpolation.Elastic(5,5,2,0.7f);
+        graphSize = 0.75f * Math.min(600, 800);
+        //steps = graphSize * 0.5f;
+
+        setMatrixForTextRotation();
+
+        Gdx.input.setInputProcessor(stage);
+
+        setMenu();
 
         assets =  new AssetManager();
         modelBatch = new ModelBatch();
@@ -303,19 +352,18 @@ public class PyramidSceneHandler implements Screen {
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, 10f, 10f, 20f));
 
         cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(newX, newY, newZ);
-        cam.lookAt(toX, toY, toZ);
+        cam.position.set(oldX, oldY, oldZ);
+        cam.lookAt(oldToX, oldToY, oldToZ);
         cam.near = 1f;
         cam.far = 300f;
         cam.update();
 
-
         label = new Label(" ", new Label.LabelStyle(btmFond, Color.WHITE));
         showFPS = true;
+        moving = false;
 
         startTime = System.currentTimeMillis();
 
-        assets = new AssetManager();
         assets.load("blue.g3db", Model.class);
         loading = true;
 
@@ -340,67 +388,41 @@ public class PyramidSceneHandler implements Screen {
         Gdx.gl.glClearColor(24 / 255F, 168 / 255F, 173 / 255F, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
+            do
+            {
+                //float percent = step / steps;
+                oldX = oldX + temp1;
+                oldY = oldY + temp2;
+                oldZ = oldZ + temp3;
 
-        if (showFPS) {
-            StringBuilder builder = new StringBuilder();
-            builder.append(" FPS: ").append(Gdx.graphics.getFramesPerSecond());
-            long time = System.currentTimeMillis() - startTime;
-            builder.append("| Game time: ").append(time);
-            label.setText(builder);
-
-            stage.addActor(label);
-        }
-
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        spriteBatch1.setTransformMatrix(mx4Font1);
-        spriteBatch1.begin();
-        btmFond.draw(spriteBatch1, question, 0, 0);
-        spriteBatch1.end();
-        spriteBatch1.setTransformMatrix(oldTransformMatrix1);
-
-        spriteBatch2.setTransformMatrix(mx4Font2);
-        spriteBatch2.begin();
-        btmFond.draw(spriteBatch2, "Place at "+newX+" "+newY+" "+newZ, 0, 0);
-        spriteBatch2.end();
-        spriteBatch2.setTransformMatrix(oldTransformMatrix2);
-
-        spriteBatch3.setTransformMatrix(mx4Font3);
-        spriteBatch3.begin();
-        btmFond.draw(spriteBatch3, "Look at "+toX+" "+toY+" "+toZ, 0, 0);
-        spriteBatch3.end();
-        spriteBatch3.setTransformMatrix(oldTransformMatrix3);
+                oldToX = oldToX + temp4;
+                oldToY = oldToY + temp5;
+                oldToZ = oldToZ + temp6;
 
 
-        cam.lookAt(toX, toY, toZ);
-        cam.position.set(newX, newY, newZ);
-        cam.update();
+                step++;
 
-        modelBatch.begin(cam);
-        modelBatch.render(instance, environment);
-        modelBatch.end();
+                if(step >= steps)
+                {
+                    moving = false;
+                    step = 0;
+                }
 
-        stage.act(delta);
+                visionUpdate(delta);
 
-        stage.draw();
-
-        // handle toast queue and display
-        Iterator<Toast> it = toasts.iterator();
-        while(it.hasNext()) {
-            Toast t = it.next();
-            if (!t.render(Gdx.graphics.getDeltaTime())) {
-                it.remove(); // toast finished -> remove
-            } else {
-                break; // first toast still active, break the loop
-            }
-        }
+            }while(moving);
 
 
+        showNotification();
     }
 
 
     @Override
     public void resize(int width, int height) {
+        graphSize = 0.75f * Math.min(stage.getViewport().getWorldWidth(), stage.getViewport().getWorldHeight());
+        //steps = graphSize * 0.5f;
         stage.getViewport().update(width, height, true);
+
     }
 
     @Override
