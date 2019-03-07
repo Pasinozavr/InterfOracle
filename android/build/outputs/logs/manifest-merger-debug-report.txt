@@ -56,7 +56,7 @@ ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\Inter
 activity#com.crowni.gdx.navigationdrawer.AndroidLauncher
 ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:15:9-24:20
 	android:screenOrientation
-		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:18:13-50
+		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:18:13-47
 	android:label
 		ADDED from D:\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\AndroidManifest.xml:17:13-45
 	android:configChanges

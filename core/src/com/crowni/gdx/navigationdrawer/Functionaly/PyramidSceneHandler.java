@@ -30,6 +30,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
@@ -389,6 +390,7 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
 
         //assets.load("red.g3db", Model.class);
 
+
         colorDialog = new Dialog("Choose Color", uiSkin)
         {
             protected void result(Object object)
@@ -418,6 +420,8 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
         colorDialog.button("Green", 3L);
         colorDialog.button("White", 4L);
 
+        //colorDialog.getTitleLabel().setFontScale(3);
+        //colorDialog.add(new TextButton("Red", uiSkin)).size(100,100);
         colorDialog.show(stage);
 
     }
