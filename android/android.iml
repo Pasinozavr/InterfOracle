@@ -115,5 +115,8 @@
     <orderEntry type="library" name="Gradle: __local_aars__:D.\Study\course_5\semester_2\Le Mans\Prg Interface\OraclProject\InterfOracle\android\libs\android.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-backend-android:1.9.9@jar" level="project" />
     <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="core" />
   </component>
 </module>

@@ -44,6 +44,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.TimerTask;
+
+
 
 public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
 
@@ -86,6 +89,15 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
     private long clr;
 
 
+    private static final int FORCE_THRESHOLD = 250;
+    private static final int TIME_THRESHOLD = 50;
+    private static final int SHAKE_DURATION = 100;
+    private float mLastX=-1.0f, mLastY=-1.0f, mLastZ=-1.0f;
+    private long mLastTime;
+    private long mLastShake;
+
+
+
     public void setMatrixForTextRotation()
     {
         btmFond = new BitmapFont(Gdx.files.internal("1.fnt"));
@@ -104,6 +116,57 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
         question = "There's no question yet";
     }
 
+    public void moveToNewSide()
+    {
+        int rnd_sol = rnd.nextInt(5);
+        if(rnd_sol == 1)
+        {
+            newX = plutot_non[0];
+            newY = plutot_non[1];
+            newZ = plutot_non[2];
+            toX = plutot_non[3];
+            toY = plutot_non[4];
+            toZ = plutot_non[5];
+        }
+        else if(rnd_sol == 2)
+        {
+            newX = plutot_oui[0];
+            newY = plutot_oui[1];
+            newZ = plutot_oui[2];
+            toX = plutot_oui[3];
+            toY = plutot_oui[4];
+            toZ = plutot_oui[5];
+        }
+        else if(rnd_sol == 3)
+        {
+            newX = non[0];
+            newY = non[1];
+            newZ = non[2];
+            toX = non[3];
+            toY = non[4];
+            toZ = non[5];
+        }
+        else if(rnd_sol == 4)
+        {
+            newX = oui[0];
+            newY = oui[1];
+            newZ = oui[2];
+            toX = oui[3];
+            toY = oui[4];
+            toZ = oui[5];
+        }
+        else
+        {
+            newX = again[0];
+            newY = again[1];
+            newZ = again[2];
+            toX = again[3];
+            toY = again[4];
+            toZ = again[5];
+        }
+        moving = true;
+        step = 1;
+    }
     public void setMenu()
     {
         drawer.add(logo_crowni).size(63, 85).pad(0, 52, 5, 52).expandX().row();
@@ -163,56 +226,7 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
 
                 if (actor.getName().equals("RATE")) {
                     Gdx.app.debug(TAG, "Rate button clicked.");
-                    int rnd_sol = rnd.nextInt(5);
-                    if(rnd_sol == 1)
-                    {
-                        newX = plutot_non[0];
-                        newY = plutot_non[1];
-                        newZ = plutot_non[2];
-                        toX = plutot_non[3];
-                        toY = plutot_non[4];
-                        toZ = plutot_non[5];
-                    }
-                    else if(rnd_sol == 2)
-                    {
-                        newX = plutot_oui[0];
-                        newY = plutot_oui[1];
-                        newZ = plutot_oui[2];
-                        toX = plutot_oui[3];
-                        toY = plutot_oui[4];
-                        toZ = plutot_oui[5];
-                    }
-                    else if(rnd_sol == 3)
-                    {
-                        newX = non[0];
-                        newY = non[1];
-                        newZ = non[2];
-                        toX = non[3];
-                        toY = non[4];
-                        toZ = non[5];
-                    }
-                    else if(rnd_sol == 4)
-                    {
-                        newX = oui[0];
-                        newY = oui[1];
-                        newZ = oui[2];
-                        toX = oui[3];
-                        toY = oui[4];
-                        toZ = oui[5];
-                    }
-                    else
-                    {
-                        newX = again[0];
-                        newY = again[1];
-                        newZ = again[2];
-                        toX = again[3];
-                        toY = again[4];
-                        toZ = again[5];
-                    }
-                    moving = true;
-                    step = 1;
-
-
+                    moveToNewSide();
 
                 } else if (actor.getName().equals("SHARE")) {
 
@@ -346,11 +360,14 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
     }
     @Override
     public void show() {
+
+
         uiSkin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage(new ExtendViewport(600, 800));
         interpolation = new Interpolation.Elastic(5,5,2,0.7f);
 
         setMatrixForTextRotation();
+
 
         Gdx.input.setInputProcessor(stage);
 
@@ -423,6 +440,31 @@ public class PyramidSceneHandler extends ApplicationAdapter implements Screen {
         //colorDialog.getTitleLabel().setFontScale(3);
         //colorDialog.add(new TextButton("Red", uiSkin)).size(100,100);
         colorDialog.show(stage);
+
+       Timer.schedule(new Timer.Task(){
+           @Override
+           public void run()
+           {
+               long now = System.currentTimeMillis();
+
+               if ((now - mLastTime) > TIME_THRESHOLD) {
+                   long diff = now - mLastTime;
+                   float speed = Math.abs(Gdx.input.getAccelerometerX() + Gdx.input.getAccelerometerY() + Gdx.input.getAccelerometerZ() - mLastX - mLastY - mLastZ) / diff * 10000;
+                   if (speed > FORCE_THRESHOLD && now - mLastShake > SHAKE_DURATION) {
+                       //toasts.add(toastFactory.create("InShake", Toast.Length.LONG));
+                           mLastShake = now;
+                           moveToNewSide();
+
+                       }
+                   }
+                   mLastTime = now;
+                   mLastX = Gdx.input.getAccelerometerX();
+                   mLastY = Gdx.input.getAccelerometerY();
+                   mLastZ = Gdx.input.getAccelerometerZ();
+               }
+       },
+               0,
+               0);
 
     }
 
